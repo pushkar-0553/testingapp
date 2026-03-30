@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 // ─── CORS Configuration ───
 // In production, FRONTEND_URL should be your Vercel domain
 const allowedOrigins = [
-  process.env.FRONTEND_URL || 'http://localhost:5173',
+  'https://testingapp-rouge.vercel.app'|| 'http://localhost:5173',
   'http://localhost:5173',
   'http://localhost:5174',
 ].filter(Boolean);
@@ -32,6 +32,12 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use(cors({
+  origin: 'https://testingapp-rouge.vercel.app', // your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 // ─── Body parsers ───
 // Increased limit to handle base64 image data in JSON payloads
